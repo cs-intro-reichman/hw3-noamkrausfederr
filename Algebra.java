@@ -6,21 +6,21 @@
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
-	    //System.out.println(plus(2,3));   // 2 + 3
-	    //System.out.println(minus(7,2));  // 7 - 2
-   		//System.out.println(minus(2,7));  // 2 - 7
- 		//System.out.println(times(3,4));  // 3 * 4
-   		//System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
-   		//System.out.println(pow(5,3));      // 5^3
-   		//System.out.println(pow(3,5));      // 3^5
-   		//System.out.println(div(12,3));   // 12 / 3    
-   		//System.out.println(div(10,5));    // 5 / 5  
-   		//System.out.println(div(25,7));   // 25 / 7
-   		//System.out.println(mod(25,7));   // 25 % 7
-   		//System.out.println(mod(120,6));  // 120 % 6    
-   		System.out.println(sqrt2(36));
-		//System.out.println(sqrt(263169));
-   		//System.out.println(sqrt(76123));
+	    System.out.println(plus(2,3));   // 2 + 3
+	    System.out.println(minus(7,2));  // 7 - 2
+   		System.out.println(minus(2,7));  // 2 - 7
+ 		System.out.println(times(3,4));  // 3 * 4
+   		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
+   		System.out.println(pow(5,3));      // 5^3
+   		System.out.println(pow(3,5));      // 3^5
+   		System.out.println(div(12,3));   // 12 / 3    
+   		System.out.println(div(10,5));    // 5 / 5  
+   		System.out.println(div(25,7));   // 25 / 7
+   		System.out.println(mod(25,7));   // 25 % 7
+   		System.out.println(mod(120,6));  // 120 % 6    
+   		System.out.println(sqrt(36));
+		System.out.println(sqrt(263169));
+   		System.out.println(sqrt(76123));
 	}  
 
 	// Returns x1 + x2
@@ -144,19 +144,8 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		double epsilon = 0.01;
-		double squareRoot = div(x, 2);
-		if (x < 0) {
-			return -1;
-		}
-		while (Math.abs((double)minus(pow((int)squareRoot,2),x)) > epsilon) {
-			squareRoot = (double)minus((int)squareRoot,div(minus(pow((int)squareRoot,2),x),times(2, (int)squareRoot)));
-		}
-		return (int)squareRoot;
-	}
-	// I caclulated the square root using the bi-section method
-	public static int sqrt2(int x) {
 		int l = 1;
+		// I caclulated the square root using the bi-section method
 		int h = x;
 		int result = 0;
 		while (l <= h) {
@@ -170,6 +159,4 @@ public class Algebra {
 		} 
 		return result;
 	}
-	
-	
 }
