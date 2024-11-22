@@ -18,7 +18,7 @@ public class Algebra {
    		//System.out.println(div(25,7));   // 25 / 7
    		//System.out.println(mod(25,7));   // 25 % 7
    		//System.out.println(mod(120,6));  // 120 % 6    
-   		//System.out.println(sqrt(36));
+   		System.out.println(sqrt2(36));
 		//System.out.println(sqrt(263169));
    		//System.out.println(sqrt(76123));
 	}  
@@ -110,6 +110,9 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int x3 = 0;
 		int count = 0;
+		if (x2 == 0) {
+			return -1;
+		}
 		while(x3 < Math.abs(x1)) {
 			if ((plus(x3,Math.abs(x2))) > Math.abs(x1)) {
 				break;
@@ -142,10 +145,31 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		double epsilon = 0.01;
-		int squareRoot = div(x, 2);
-		while (Math.abs(minus(pow(squareRoot,2),x)) > epsilon) {
-			squareRoot = minus(squareRoot,div(minus(pow(squareRoot,2),x),times(2, squareRoot)));
+		double squareRoot = div(x, 2);
+		if (x < 0) {
+			return -1;
 		}
-		return squareRoot;
-	}	  	  
+		while (Math.abs((double)minus(pow((int)squareRoot,2),x)) > epsilon) {
+			squareRoot = (double)minus((int)squareRoot,div(minus(pow((int)squareRoot,2),x),times(2, (int)squareRoot)));
+		}
+		return (int)squareRoot;
+	}
+
+	public static int sqrt2(int x) {
+		int l = 1;
+		int h = x;
+		int result = 0;
+		while (l <= h) {
+			int mid = l + (h - l) / 2;
+			if (mid <= x / mid) {
+				result = mid;
+				l = mid + 1;
+			} else {
+				h = mid - 1;
+			}
+		} 
+		return result;
+	}
+	
+	
 }
