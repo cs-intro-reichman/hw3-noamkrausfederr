@@ -31,8 +31,11 @@ public class Anagram {
 		String str3 = preProcess(str1);
 		String str4 = preProcess(str2);
 		boolean anagram = true;
-		if ((str3=="")||(str4=="")) {
+		if ((str3 == "") || (str4 == "")) {
 			anagram = false;
+		}
+		else if ((str3 == "") && (str4=="")) {
+			return true;
 		}
         for (int i = 0; i < str4.length(); i++) {
             if (countChar(str4, str4.charAt(i))!=countChar(str3, str4.charAt(i))) {
@@ -59,7 +62,7 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String str3 = str.toLowerCase();
-		String punctuation = " ,:/.;?!-*_()[]*\\\"\\'&@$~^|\"";
+		String punctuation = ",:/.;?!-*_()[]*\\\"\\'&@$~^|\"";
 		String finalString1 = "";
 
 		for(int i = 0; i <= str3.length()-1; i++) {
