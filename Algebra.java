@@ -154,18 +154,18 @@ public class Algebra {
 		}
 		return (int)squareRoot;
 	}
-
+	// I caclulated the square root using the bi-section method
 	public static int sqrt2(int x) {
 		int l = 1;
 		int h = x;
 		int result = 0;
 		while (l <= h) {
-			int mid = l + (h - l) / 2;
-			if (mid <= x / mid) {
+			int mid = plus(l, div(minus(h,l),2));
+			if (mid <= div(x,mid)) {
 				result = mid;
-				l = mid + 1;
+				l = plus(mid,1);
 			} else {
-				h = mid - 1;
+				h = minus(mid,1);
 			}
 		} 
 		return result;
