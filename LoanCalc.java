@@ -62,8 +62,8 @@ public class LoanCalc {
         iterationCounter = 0;
 		// I set l to give me an endbalance that is bigger than 0
 		double l = loan/n;
-		// I set h to give me an endbalance that is bigger than 0
-        double h = 20000;
+		// I set h to give me an endbalance that is smaller than 0
+        double h = loan;
         double g = (l + h) / 2;
         while((h - l) >= epsilon) {
             if ((endBalance(loan, rate, n, g)) * (endBalance(loan, rate, n, l)) > 0) {
