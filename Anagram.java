@@ -3,7 +3,7 @@ public class Anagram {
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
 		System.out.println(isAnagram("silent","listen"));  // true
-		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
+		System.out.println(isAnagram("William Shakespeare    ","I am a weakish speller   ")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 
@@ -49,6 +49,9 @@ public class Anagram {
 	// Returns the number of times a char appears in the given string.
 	public static int countChar (String str, char c) {
         int count = 0;
+		if (c == ' ') {
+			return 0;
+		}
         for(int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == c) {
                 count++;
