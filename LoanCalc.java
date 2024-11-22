@@ -44,7 +44,7 @@ public class LoanCalc {
 		iterationCounter = 0;
 		double g = loan/n;
         double x = endBalance(loan, rate, n, g);
-        while ((Math.abs(g * (1+rate) - x) >= epsilon) && (x >= 0)) {
+        while ((Math.abs(g * g - x) >= epsilon) && (g <= x)) {
             g += epsilon;
 			// I set x to be the new endbalance with the new periodical payment g
             x = endBalance(loan, rate, n, g);
