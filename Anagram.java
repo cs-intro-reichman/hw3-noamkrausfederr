@@ -28,15 +28,21 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
+		// I created 2 new strings that are the result of the original strings after
+		// the preProcess function.
 		String str3 = preProcess(str1);
 		String str4 = preProcess(str2);
 		boolean anagram = true;
+		// If the 2 anagrams are empty the function returns true, but if only one of them
+		// is empty it returns false
 		if ((str3 == "") && (str4 == "")) {
 			return true;
 		} else if (((str3 == "") && (str4 != "")) || ((str3 != "") && (str4 == ""))) {
 			anagram = false;
 		}
 		
+		// If the number of characters in both the string are equal the function returns true,
+		// otherwise it returns false
         for (int i = 0; i < str4.length(); i++) {
             if (countChar(str4, str4.charAt(i)) != countChar(str3, str4.charAt(i))) {
                 anagram = false;
@@ -65,9 +71,14 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String str3 = str.toLowerCase();
+		// I created a string that has all the punctuation marks, so that i can compare
+		// it to the string.
 		String punctuation = ",:/.;?!-*_()[]*\\\"\\'&@$~^|\"";
 		String finalString1 = "";
 
+		// Only if the character in the string isn't a punctuation mark, I add it to 
+		// the finalstring
+		// 
 		for(int i = 0; i <= str3.length() - 1; i++) {
 			if (punctuation.indexOf(str3.charAt(i)) == -1) {        
 				finalString1 += str3.charAt(i);
