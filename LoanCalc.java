@@ -30,9 +30,9 @@ public class LoanCalc {
 	private static double endBalance(double loan, double rate, int n, double payment) {	
 		double finalBalance = loan;
 		for (int i = 0; i < n; i++) {
-			finalBalance = (finalBalance-payment) * (1+rate);
+			finalBalance = (finalBalance - payment) * (1 + rate);
 		}
-		return Math.ceil(finalBalance);
+		return finalBalance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -41,13 +41,14 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
+		double newRate = rate / 100;
 		iterationCounter = 0;
 		double g = loan / n;
-        double x = endBalance(loan, rate, n, g);
+        double x = endBalance(loan, newRate, n, g);
         while ((Math.abs(g * g - x) >= epsilon) && (x >= 0)) {
             g += epsilon;
 			// I set x to be the new endbalance with the new periodical payment g
-            x = endBalance(loan, rate, n, g);
+            x = endBalance(loan, newRate, n, g);
 			iterationCounter++;
         }
 		return g;
@@ -59,14 +60,15 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        iterationCounter = 0;
+        double newRate = rate / 100;
+		iterationCounter = 0;
 		// I set l to give me an endbalance that is bigger than 0
 		double l = loan / n;
 		// I set h to give me an endbalance that is smaller than 0
         double h = loan;
         double g = (l + h) / 2;
         while((h - l) >= epsilon) {
-            if ((endBalance(loan, rate, n, g)) * (endBalance(loan, rate, n, l)) > 0) {
+            if ((endBalance(loan, newRate, n, g)) * (endBalance(loan, newRate, n, l)) > 0) {
                 l = g;
             }
             else {
