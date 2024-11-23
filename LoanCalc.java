@@ -28,8 +28,12 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+		double finalBalance = loan;
+		// Using a loop i calculated the end sum with the given formula.
+		for (int i = 0; i < n; i++) {
+			finalBalance = (finalBalance - payment) * (1 + rate);
+		}
+		return finalBalance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -38,8 +42,19 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		// Replace the following statement with your code
-		return 0;
+		// The calculations use the percentage of the rate, so i divided the rate by 
+		// a 100 to get an accurate result
+		double newRate = rate / 100;
+		iterationCounter = 0;
+		double g = loan / n;
+        double x = endBalance(loan, newRate, n, g);
+        while ((Math.abs(g * g - x) >= epsilon) && (x >= 0)) {
+            g += epsilon;
+			// I set x to be the new endbalance with the new periodical payment g
+            x = endBalance(loan, newRate, n, g);
+			iterationCounter++;
+        }
+		return g;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -48,7 +63,23 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
+        double newRate = rate / 100;
+		iterationCounter = 0;
+		// I set l to give me an endbalance that is bigger than 0
+		double l = loan / n;
+		// I set h to give me an endbalance that is smaller than 0
+        double h = loan;
+        double g = (l + h) / 2;
+        while((h - l) >= epsilon) {
+            if ((endBalance(loan, newRate, n, g)) * (endBalance(loan, newRate, n, l)) > 0) {
+                l = g;
+            }
+            else {
+                h = g;            
+            }
+            g = (l + h) / 2; 
+			iterationCounter++;
+        }
+		return g;
     }
 }
