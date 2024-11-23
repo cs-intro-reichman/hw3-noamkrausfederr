@@ -32,7 +32,7 @@ public class LoanCalc {
 		for (int i = 0; i < n; i++) {
 			finalBalance = (finalBalance-payment) * (1+rate);
 		}
-		return finalBalance;
+		return Math.ceil(finalBalance);
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
