@@ -31,14 +31,14 @@ public class Anagram {
 		String str3 = preProcess(str1);
 		String str4 = preProcess(str2);
 		boolean anagram = true;
-		if ((str3 == "") && (str4=="")) {
+		if ((str3 == "") && (str4 == "")) {
 			return true;
-		} else if (((str3 == "") && (str4 != ""))||((str3 != "") && (str4 == ""))) {
+		} else if (((str3 == "") && (str4 != "")) || ((str3 != "") && (str4 == ""))) {
 			anagram = false;
 		}
 		
         for (int i = 0; i < str4.length(); i++) {
-            if (countChar(str4, str4.charAt(i))!=countChar(str3, str4.charAt(i))) {
+            if (countChar(str4, str4.charAt(i)) != countChar(str3, str4.charAt(i))) {
                 anagram = false;
                 break;
             }
@@ -68,8 +68,8 @@ public class Anagram {
 		String punctuation = ",:/.;?!-*_()[]*\\\"\\'&@$~^|\"";
 		String finalString1 = "";
 
-		for(int i = 0; i <= str3.length()-1; i++) {
-			if (punctuation.indexOf(str3.charAt(i))==-1) {        
+		for(int i = 0; i <= str3.length() - 1; i++) {
+			if (punctuation.indexOf(str3.charAt(i)) == -1) {        
 				finalString1 += str3.charAt(i);
 			}
 		}
@@ -85,7 +85,7 @@ public class Anagram {
         while (str1.length() > 0) {
 			// I generated a random index of the string that ranges between 0 and the length of 
 			// the string minus 1
-            int randomIndex = (int)(Math.random()*(str1.length()-1));
+            int randomIndex = (int)(Math.random() * (str1.length() - 1));
             char c = str1.charAt(randomIndex);
             randomAnagram += c;
 			// I saved the string into a string "work" so that when i make the original string
