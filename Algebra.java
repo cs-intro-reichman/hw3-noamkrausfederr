@@ -23,6 +23,18 @@ public class Algebra {
    		System.out.println(sqrt(76123));
 	}  
 
+	public static int absolute(int x) {
+		int x2 = x;
+		if (x >= 0) {
+			return x2;
+		} else {
+			String abs = "" + x;
+			abs = abs.substring(1,abs.length());
+			x2 = Integer.parseInt(abs);
+			return x2;
+		}
+	}
+
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int x3 = 0;
@@ -45,7 +57,7 @@ public class Algebra {
 		}
 		else if ((x1 < 0) && (x2 <= 0)) {
 			x3 = x1;
-			for(int i = 0; i < Math.abs(x2); i++) {
+			for(int i = 0; i < absolute(x2); i++) {
 				x3--;
 			}	
 		}
@@ -65,12 +77,12 @@ public class Algebra {
 			}	
 		} else if ((x1 > 0) && (x2 < 0)) {		
 			x3 = x1;
-			for(int i = 0; i < Math.abs(x2); i++) {
+			for(int i = 0; i < absolute(x2); i++) {
 				x3++;
 			}
 		} else if ((x2 < 0) && (x1 < 0)) {
 			x3 = x1;
-			for(int i = 0; i < Math.abs(x2); i++) {
+			for(int i = 0; i < absolute(x2); i++) {
 				x3++;
 			}	
 		}
@@ -82,8 +94,8 @@ public class Algebra {
 		int x3 = 0;
 
 		// I add 1 to a sum, (x1*x2) times
-		for(int i = 0; i < Math.abs(x1); i++) {
-			for(int j = 0; j < Math.abs(x2); j++) {
+		for(int i = 0; i < absolute(x1); i++) {
+			for(int j = 0; j < absolute(x2); j++) {
 				x3++;
 			}
 		}
@@ -100,7 +112,7 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		int x3 = Math.abs(x);
+		int x3 = absolute(x);
 
 		// If the power of the number is zero, the result is always 1
 		if (n == 0) {
@@ -109,7 +121,7 @@ public class Algebra {
 
 		// I multiplied the number by itself n times
 		for(int i = 1; i < n; i++) {
-				x3 = times(x3,Math.abs(x));
+				x3 = times(x3, absolute(x));
 		}
 
 		// If one of the numbers was negative, i disregarded it during the calculations
@@ -132,11 +144,11 @@ public class Algebra {
 		// I kept adding x2 to itself until the sum was larger than x1, and counted
 		// how many times it took to reach x1, and returned that count, which is the
 		// integer result of the division 
-		while(x3 < Math.abs(x1)) {
-			if ((plus(x3,Math.abs(x2))) > Math.abs(x1)) {
+		while(x3 < absolute(x1)) {
+			if ((plus(x3, absolute(x2))) > absolute(x1)) {
 				break;
 			}
-			x3 = plus(x3,Math.abs(x2));
+			x3 = plus(x3, absolute(x2));
 			count++;
 		}
 
