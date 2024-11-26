@@ -66,11 +66,26 @@ public class Anagram {
         return count;
     }
 
+	// I created a function that turn the string into only lowercase letters
+	// by using the characters ascii numbers and checking if they are in the 
+	// Uppercase range, and if so, i add 32 to make them their lowercase alternative
+	public static String lowerCase(String str) {
+		String newstr = "";
+		for (int i = 0; i <= str.length()-1; i++) {
+			char c = str.charAt(i);
+			if ((c >= 65) && (c <= 90)) {
+				c += 32;
+			} 
+			newstr += c;
+		}
+		return newstr;
+	}
+
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		String str3 = str.toLowerCase();
+		String str3 = lowerCase(str);
 		// I created a string that has all the punctuation marks, so that i can compare
 		// it to the string.
 		String punctuation = ",:/.;?!-*_()[]*\\\"\\'&@$~^|\"";
